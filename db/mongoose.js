@@ -11,4 +11,4 @@ mongoose.connect(database)
     console.log(`Unable to connect to database`);
   })
 
-  module.exports = mongoose;
+module.exports = mongoose;
