@@ -1,0 +1,65 @@
+/* LOGIN PAGE */
+body, html {
+    height: 100%;
+    margin: 0px;
+}
+
+#login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/images/blue.png");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #2B436D;
+}
+
+#login-whitebox {
+  height: 250px;
+  width: 100%;
+  background-color:rgba(225, 225, 225, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-form-box {
+  height: 200px;
+  width: 250px;
+  display: grid;
+  grid-template-rows: 20% 60% 20%;
+  font-family: 'Old Standard TT', serif;
+  text-align: center;
+}
+
+#zagehub-title {
+  font-size: 30px;
+  margin: 5px;
+}
+
+form {
+  font-size: 17px;
+}
+
+#forgot-password {
+  font-size: 13px;
+}
+
+#forgot-password:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#sign-up {
+  position: absolute;
+  margin: 20px;
+  font-size: 17px;
+  color: white;
+}
+
+#sign-up:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
