@@ -46,19 +46,27 @@ app.post("/register", [
   ],
 (req, res) => {
   const errors = validationResult(req);
-  res.send(errors.array());
-  // const user = new User({
-  //   email: req.body.email,
-  //   password: req.body.password
-  // })
-  // user.save()
-  //   .then(user => {
-  //     console.log("SUCCESS!");
-  //     res.redirect("/");
-  //   })
-  //   .catch(e => {
-  //     console.log(e);
-  //   })
+  if (!errors.isEmpty()) {
+    const errorMessages = errors.array().map(obj => {
+      return {message: obj.msg};
+    });
+    console.log("Original Errors:", errors.array());
+    console.log("Mapped Errors:", errorMessages);
+  }
+
+  const userData = matchedData(req);
+  console.log(userData);
+  const user = new User(userData);
+    user.save()
+        .then(user => {
+          res.redirect("/login");
+        })
+        .catch(e => {
+          if(e.code === 11000) {
+            console.log("Duplicate email.");
+          }
+          res.redirect("/register");
+        })
 })
 
 app.listen(port, () => {
