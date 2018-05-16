@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const validator = require("validator");
 
-//database validation
 const userSchema = mongoose.Schema({
   email: {
     type: String,
@@ -10,7 +9,6 @@ const userSchema = mongoose.Schema({
     unique: true,
     validate: {
       validator: validator.isEmail,
-      //takes value the user inputted
       message: `{VALUE} is not a valid email`
     }
   },
@@ -21,8 +19,6 @@ const userSchema = mongoose.Schema({
   }
 })
 
-// pre = instance method, current instance of userSchema will
-// call this method, refer to ourselves as 'this' --> why u use function()
 userSchema.pre("save", function(next) {
   const user = this;
   if(user.isModified("password")) {
