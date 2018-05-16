@@ -5,6 +5,7 @@ const User = require("./models/user.js");
 const mongoose = require("./db/mongoose.js");
 const { body, validationResult } = require('express-validator/check');
 const { matchedData } = require('express-validator/filter');
+const bcrypt = require("bcryptjs");
 
 const port = process.env.PORT || 3000;
 
@@ -67,6 +68,38 @@ app.post("/register", [
           }
           res.redirect("/register");
         })
+})
+
+app.post("/login", (req, res) => {
+  console.log("Post login route hit");
+  User.findOne({email: req.body.email})
+      .then(user => {
+        if (!user) {
+          console.log("This email does not exist.");
+          return res.redirect("/login");
+        } else {
+          console.log(user);
+          console.log(req.body.password, user.password);
+          bcrypt.compare(req.body.password, user.password)
+            .then(passwordIsValid => {
+              console.log("Password is valid: ", passwordIsValid);
+              if(passwordIsValid) {
+                console.log("success");
+                res.redirect("/profile");
+              } else {
+                console.log("Invalid Password");
+                res.redirect("/login");
+              }
+            })
+            .catch(e => {
+              console.log(e);
+            })
+        }
+      })
+      .catch(e => {
+        console.log("Error");
+        return res.redirect("/login");
+      })
 })
 
 app.listen(port, () => {
