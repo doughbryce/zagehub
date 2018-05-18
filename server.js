@@ -8,18 +8,10 @@ const { matchedData } = require('express-validator/filter');
 const bcrypt = require("bcryptjs");
 const exphbs = require("express-handlebars");
 
-//session cookie
-// const session = require("express-session");
-// const flash = require("connect-flash");
+require("dotenv").config();
 
-// app.use(session({
-//   secret: process.env.SESSION_SECRET,
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: {secure: false}
-// }));
-//
-// app.use(flash());
+const session = require("express-session");
+const flash = require("connect-flash");
 
 const port = process.env.PORT || 3000;
 
@@ -33,6 +25,21 @@ app.engine("hbs", exphbs({defaultLayout : "main",
 app.set("view engine", "hbs");
 
 app.use(express.static(path.join(__dirname, "/public")));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {secure: false}
+}));
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.errorMessages = req.flash('errorMessages');
+  res.locals.successMessage = req.flash('successMessage');
+  next();
+})
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -70,8 +77,8 @@ app.post("/register", [
     });
     console.log("Original Errors:", errors.array());
     console.log("Mapped Errors:", errorMessages);
-    // req.flash('errorMessages', errorMessages);
-    // return res.redirect("/register");
+    req.flash('errorMessages', errorMessages);
+    return res.redirect("/register");
   }
 
   const userData = matchedData(req);
@@ -79,11 +86,14 @@ app.post("/register", [
   const user = new User(userData);
     user.save()
         .then(user => {
+          // res.redirect("/login");
+          req.flash('successMessage', {message: "Sign up successful!"});
           res.redirect("/login");
         })
         .catch(e => {
           if(e.code === 11000) {
-            console.log("Duplicate email.");
+            // console.log("Duplicate email.");
+            req.flash("errorMessages", {message: "Duplicate email"})
           }
           res.redirect("/register");
         })
@@ -94,7 +104,7 @@ app.post("/login", (req, res) => {
   User.findOne({email: req.body.email})
       .then(user => {
         if (!user) {
-          console.log("This email does not exist.");
+          req.flash("errorMessages", {message: "This email does not exist."});
           return res.redirect("/login");
         } else {
           console.log(user);
@@ -103,9 +113,11 @@ app.post("/login", (req, res) => {
             .then(passwordIsValid => {
               console.log("Password is valid: ", passwordIsValid);
               if(passwordIsValid) {
+                req.session.userId = user._id;
                 console.log("success");
                 res.redirect("/profile");
               } else {
+                req.flash("errorMessages", {message: "Invalid password."});
                 console.log("Invalid Password");
                 res.redirect("/login");
               }
@@ -116,7 +128,7 @@ app.post("/login", (req, res) => {
         }
       })
       .catch(e => {
-        console.log("Error");
+        req.flash("errorMessages", {message: e});
         return res.redirect("/login");
       })
 })
