@@ -8,7 +8,7 @@
   </head>
   <body>
     <section id="profile-header">
-      <p>Username</p>
+      <p>{{username}}</p>
     </section>
     <section id="user-content">
       <section id="content-headers">
@@ -43,6 +43,11 @@
             <a href="#"><b>Delete</b></a>
           </div>
         </section>
+
+
+        <form action="/logout" method="get">
+          <input type="submit" value="Logout">
+        </form>
 
       </section>
     </section>

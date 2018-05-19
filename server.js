@@ -52,7 +52,19 @@ app.get("/login", (req, res) => {
 })
 
 app.get("/profile", (req, res) => {
-  res.render("profile.hbs");
+  // console.log(req.session.email);
+  console.log("userId:", req.session.userId);
+  User.findById(req.session.userId)
+    .then(user => {
+      return res.render("profile.hbs", {
+        username: user.email
+      });
+      // console.log(user.email);
+    })
+    .catch(e => {
+      console.log(e);
+      res.redirect("/login")
+    })
 })
 
 app.get("/register", (req, res) => {
@@ -80,7 +92,6 @@ app.post("/register", [
     req.flash('errorMessages', errorMessages);
     return res.redirect("/register");
   }
-
   const userData = matchedData(req);
   console.log(userData);
   const user = new User(userData);
@@ -132,6 +143,12 @@ app.post("/login", (req, res) => {
         return res.redirect("/login");
       })
 })
+
+app.get("/logout", (req, res) => {
+  console.log("Hit logout route");
+  req.session.userId = undefined;
+  res.redirect("/login");
+});
 
 app.listen(port, () => {
   console.log(`Web server up on port ${port}`);
