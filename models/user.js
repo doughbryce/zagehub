@@ -16,6 +16,23 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
     minLength: 6
+  },
+  classes: {
+    type: Array,
+    items: {
+      type: Object,
+      properties: {
+        name: {
+          type: String
+        },
+        gradeNow: {
+          type: Number
+        },
+        gradeWant: {
+          type: Number
+        }
+      }
+    }
   }
 })
 

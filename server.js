@@ -150,6 +150,37 @@ app.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
+app.get("/addclass", (req, res) => {
+  if(req.session.userId == undefined) {
+    res.redirect("/login");
+  } else {
+    res.render("addClass.hbs");
+  }
+})
+
+app.post("/addclass", (req, res) => {
+  console.log(req.body);
+  console.log("userId:", req.session.userId);
+  User.findById(req.session.userId)
+    .then(user => {
+
+      User.findByIdAndUpdate(
+          user._id,
+          {$push: {classes: req.body}},
+          {safe: true, upsert: true},
+          function(err, model) {
+            console.log(err);
+          }
+      );
+
+      res.redirect("/profile");
+    })
+    .catch(e => {
+      console.log(e);
+      res.redirect("/addclass");
+    })
+})
+
 app.listen(port, () => {
   console.log(`Web server up on port ${port}`);
 })
