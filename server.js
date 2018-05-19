@@ -57,7 +57,8 @@ app.get("/profile", (req, res) => {
   User.findById(req.session.userId)
     .then(user => {
       return res.render("profile.hbs", {
-        username: user.email
+        username: user.email,
+        classes: user.classes
       });
       // console.log(user.email);
     })
@@ -158,12 +159,19 @@ app.get("/addclass", (req, res) => {
   }
 })
 
+const calculate = (gradeWant, gradeNow, percentTest) => {
+  //Grade = Exam Worth × Exam Score + (100% − Exam Worth) × Current Grade
+  let x = gradeWant - (1 - (0.01*percentTest)) * gradeNow;
+  return x / (0.01*percentTest);
+}
+
 app.post("/addclass", (req, res) => {
   console.log(req.body);
+  req.body.final = calculate(req.body.gradeWant, req.body.gradeNow, req.body.percentTest);
+  console.log(req.body.final);
   console.log("userId:", req.session.userId);
   User.findById(req.session.userId)
     .then(user => {
-
       User.findByIdAndUpdate(
           user._id,
           {$push: {classes: req.body}},
@@ -172,7 +180,6 @@ app.post("/addclass", (req, res) => {
             console.log(err);
           }
       );
-
       res.redirect("/profile");
     })
     .catch(e => {

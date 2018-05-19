@@ -43,7 +43,7 @@ body, html {
 
 .class {
   display: grid;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 20% 80%;
   border: double #2B436D;
   margin: 10px;
 }

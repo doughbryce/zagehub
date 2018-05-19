@@ -16,21 +16,20 @@
         <a id="add-class-button" href="/addclass">Add Class</a>
       </section>
       <section id="content-classes">
-        <section class="class">
-          <div class="class-name">
-            <p><b>Physics</b></p>
-          </div>
-          <div class="class-grades">
-            <p><i>Present grade:</i> 86.5% &emsp; <i>Minimum grade wanted:</i> 90.0% &emsp; <i>Percent needed on final:</i> 88.6%</p>
-          </div>
-          <div class="class-buttons">
-            <a href="#"><b>Edit</b></a>
-            &emsp;
-            <a href="#"><b>Delete</b></a>
-          </div>
-        </section>
 
-        <section class="class">
+        {{#each classes}}
+          <section class="class">
+            <div class="class-name">
+              <p><b>{{className}}</b></p>
+            </div>
+            <div class="class-grades">
+              <p><i>Present grade:</i> {{gradeNow}}% &emsp; <i>Minimum grade wanted:</i> {{gradeWant}}%
+                &emsp; <i>Test is worth: {{percentTest}}%</i> &emsp; <i>Grade needed on final:</i> {{final}}%</p>
+            </div>
+          </section>
+        {{/each}}
+
+        <!-- <section class="class">
           <div class="class-name">
             <p><b>Analysis</b></p>
           </div>
@@ -42,7 +41,7 @@
             &emsp;
             <a href="#"><b>Delete</b></a>
           </div>
-        </section>
+        </section> -->
 
 
         <form action="/logout" method="get">

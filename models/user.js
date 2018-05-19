@@ -30,6 +30,12 @@ const userSchema = mongoose.Schema({
         },
         gradeWant: {
           type: Number
+        },
+        percentTest: {
+          type: Number
+        },
+        final: {
+          type: Number
         }
       }
     }
