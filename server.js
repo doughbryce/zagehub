@@ -55,15 +55,13 @@ app.get("/login", (req, res) => {
 })
 
 app.get("/profile", (req, res) => {
-  // console.log(req.session.email);
   console.log("userId:", req.session.userId);
   User.findById(req.session.userId)
     .then(user => {
       return res.render("profile.hbs", {
-        username: user.email,
+        username: user.username,
         classes: user.classes
       });
-      // console.log(user.email);
     })
     .catch(e => {
       console.log(e);
@@ -76,9 +74,9 @@ app.get("/register", (req, res) => {
 })
 
 app.post("/register", [
-    body("email")
-      .isEmail()
-      .withMessage("Invalid email address."),
+    body("username")
+      .isLength({ min: 4 })
+      .withMessage("Username must have at least 4 characters"),
     body("password")
       .isLength({ min: 6 })
       .withMessage("Password must be at least 6 characters")
@@ -101,14 +99,13 @@ app.post("/register", [
   const user = new User(userData);
     user.save()
         .then(user => {
-          // res.redirect("/login");
           req.flash('successMessage', {message: "Sign up successful!"});
           res.redirect("/login");
         })
         .catch(e => {
           if(e.code === 11000) {
-            // console.log("Duplicate email.");
-            req.flash("errorMessages", {message: "Duplicate email"})
+
+            req.flash("errorMessages", {message: "Duplicate username"})
           }
           res.redirect("/register");
         })
@@ -116,11 +113,11 @@ app.post("/register", [
 
 app.post("/login", (req, res) => {
   console.log("Post login route hit");
-  console.log(req.body.email);
-  User.findOne({email: req.body.email})
+  console.log(req.body.username);
+  User.findOne({username: req.body.username})
       .then(user => {
         if (!user) {
-          req.flash("errorMessages", {message: "This email does not exist."});
+          req.flash("errorMessages", {message: "This username does not exist."});
           return res.redirect("/login");
         } else {
           console.log(user);
