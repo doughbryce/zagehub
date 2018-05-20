@@ -7,6 +7,7 @@ const { body, validationResult } = require('express-validator/check');
 const { matchedData } = require('express-validator/filter');
 const bcrypt = require("bcryptjs");
 const exphbs = require("express-handlebars");
+const methodOverride = require("method-override");
 
 require("dotenv").config();
 
@@ -23,6 +24,8 @@ app.engine("hbs", exphbs({defaultLayout : "main",
                           extname       : ".hbs"}));
 
 app.set("view engine", "hbs");
+
+app.use(methodOverride("_method"));
 
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -113,6 +116,7 @@ app.post("/register", [
 
 app.post("/login", (req, res) => {
   console.log("Post login route hit");
+  console.log(req.body.email);
   User.findOne({email: req.body.email})
       .then(user => {
         if (!user) {
@@ -186,6 +190,19 @@ app.post("/addclass", (req, res) => {
       console.log(e);
       res.redirect("/addclass");
     })
+})
+
+app.delete("/delete/:className", (req, res) => {
+  console.log("hit delete route");
+  // const className = req.params.className;
+  // Class.findByIdAndRemove(id)
+  //    .then(dog => {
+  //      console.log("Successful delete");
+  //      res.redirect("/dogs");
+  //    })
+  //    .catch(e => {
+  //      res.status(500).send(e);
+  //    })
 })
 
 app.listen(port, () => {

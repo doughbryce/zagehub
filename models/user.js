@@ -23,7 +23,8 @@ const userSchema = mongoose.Schema({
       type: Object,
       properties: {
         name: {
-          type: String
+          type: String,
+          unique: true
         },
         gradeNow: {
           type: Number

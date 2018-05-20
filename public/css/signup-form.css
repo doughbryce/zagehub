@@ -1,33 +1,33 @@
-/* LOGIN PAGE */
+/* Signup Page */
 body, html {
     height: 100%;
     margin: 0px;
     font-family: 'Montserrat', serif;
 }
 
-#login-container {
-  z-index: 12;
+#signup-container {
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#login-box{
+#signup-box{
   z-index: 1;
   height: 300px;
   width: 500px;
   margin-top: -150px;
-  background-color: #5EA4B4;
+  background-color: #6DA3B2;
   border-radius: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#login-form-box {
+#signup-form-box {
+  margin-top: -15px;
   height: 200px;
-  width: 250px;
-  margin-top: -20px;
+  width: 300px;
   display: grid;
   grid-template-rows: 20% 60% 20%;
   text-align: center;
@@ -81,12 +81,13 @@ form {
 
 #username, #password{
   text-align: center;
-  font-size: .6em;
+  font-size: .7em;
   width: 230px;
   outline: none;
   border: none;
   border-radius: 200px;
   padding: 7px;
+  margin: 5px;
 }
 
 #top-banner{
@@ -98,12 +99,8 @@ form {
 }
 
 #signupButton{
-  grid-column: 1/2;
-  width: 4.5em;
-  padding: 5px;
-  padding-top: 8px;
-  height: 1.5em;
-  font-size: 1.4em;
+  padding: 10px;
+  font-size: 1.6em;
   margin-top: 10px;
   margin-left: 5px;
   border: 3px solid #6DA3B2;
@@ -116,21 +113,6 @@ form {
   text-align: center;
 }
 
-#forgotButton{
-  grid-column: 100/101;
-  width: 10em;
-  padding: 5px;
-  padding-top: 8px;
-  height: 1.5em;
-  font-size: 1.4em;
-  margin-top: 10px;
-  margin-left: 5px;
-  border: 3px solid #6DA3B2;
-  border-radius: 200px;
-  color: #6DA3B2;
-  cursor: pointer;
-  outline: none;
-  background: white;
-  text-decoration: none;
-  text-align: center;
+#signupButton:hover {
+  font-size: 1.7em;
 }

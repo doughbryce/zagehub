@@ -8,12 +8,12 @@
   </head>
   <body>
     <section id="profile-header">
-      <p>{{username}}</p>
+      <p id="username">{{username}}</p>
     </section>
     <section id="user-content">
       <section id="content-headers">
-        <p id="your-classes">Your Classes: <p>
-        <a id="add-class-button" href="/addclass">Add Class</a>
+        <p id="classes">CLASSES</p>
+        <a href="/addclass"><p id="add-class-button">ADD CLASS</p></a>
       </section>
       <section id="content-classes">
 
@@ -26,24 +26,14 @@
               <p><i>Present grade:</i> {{gradeNow}}% &emsp; <i>Minimum grade wanted:</i> {{gradeWant}}%
                 &emsp; <i>Test is worth: {{percentTest}}%</i> &emsp; <i>Grade needed on final:</i> {{final}}%</p>
             </div>
+            <!-- <div class="class-buttons">
+              <form action="/delete/{{className}}?_method=DELETE" method="post">
+                <input type="submit" value="Delete">
+              </form>
+            </div> -->
           </section>
         {{/each}}
-
-        <!-- <section class="class">
-          <div class="class-name">
-            <p><b>Analysis</b></p>
-          </div>
-          <div class="class-grades">
-            <p><i>Present grade:</i> 82.5% &emsp; <i>Minimum grade wanted:</i> 80.0% &emsp; <i>Percent needed on final:</i> 81.3%</p>
-          </div>
-          <div class="class-buttons">
-            <a href="#"><b>Edit</b></a>
-            &emsp;
-            <a href="#"><b>Delete</b></a>
-          </div>
-        </section> -->
-
-
+        
         <form action="/logout" method="get">
           <input type="submit" value="Logout">
         </form>

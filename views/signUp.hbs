@@ -3,18 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>Register</title>
+    <link rel="stylesheet" href="/css/signup-form.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   </head>
   <body>
-    <h1>Sign Up</h1>
-    <form action="/register" method="post">
-      <p>
-        <input type="text" name="email" placeholder="youremail@gmail.com">
-      </p>
-      <p>
-        <input type="password" name="password" placeholder="*********">
-      </p>
-      <p>
-        <input type="submit">
-      </p>
+    <section id="top-banner">
+    </section>
+    <section id="signup-container">
+      <section id="signup-box">
+        <section id="signup-form-box">
+          <div>
+            <p id="zagehub-title">Register</p>
+          </div>
+          <div>
+            <form action="/register" method="post">
+              <p>
+                <input id="username" type="text" placeholder="USERNAME" name="email" value="">
+              </p>
+              <p>
+                <input id="password" type="password" placeholder="PASSWORD" name="password" value="">
+              </p>
+              <input id="signupButton" type="submit" name="" value="Sign Up">
+            </form>
+          </div>
+        </section>
+      </section>
+    </section>
   </body>
 </html>

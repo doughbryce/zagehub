@@ -1,4 +1,109 @@
+*{
+  font-family: 'Montserrat', serif;
+}
+
 body, html {
+  padding: 0px;
+  margin: 0px;
+}
+
+#profile-header {
+  background-image: url("/images/schoolVector.png");
+  height: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 50px;
+}
+
+#username{
+  border: 3px solid #6DA3B2;
+  border-radius: 200px;
+  background-color: white;
+  color: #6DA3B2;
+  padding: 10px;
+}
+
+#user-content {
+  margin: 30px;
+  display: grid;
+  grid-template-rows: 20% 80%;
+}
+
+#classes {
+  color: #6DA3B2;
+  border: 3px solid #6DA3B2;
+  border-radius: 200px;
+  padding: 10px;
+  margin-left: 10px;
+  align-self: flex-end;
+}
+
+#content-headers {
+  display: flex;
+  justify-content: space-between;
+}
+
+#add-class-button {
+  color: #6DA3B2;
+  border: 3px solid #6DA3B2;
+  border-radius: 200px;
+  padding: 10px;
+  margin-right: 10px;
+  align-self: flex-end;
+  text-decoration: underline;
+}
+
+#add-class-button:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.class {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  border: solid #2B436D;
+  margin: 10px;
+  border: 3px solid #6DA3B2;
+  border-radius: 200px;
+}
+
+.class-grades {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.class-name {
+  font-size: 1.4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.class-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.class-buttons a {
+  text-decoration: none;
+  color: black;
+}
+
+.class-buttons a:hover {
+  cursor: pointer;
+}
+
+
+
+/* body, html {
   padding: 0px;
   margin: 0px;
 }
@@ -43,7 +148,7 @@ body, html {
 
 .class {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 15% 70% 15%;
   border: double #2B436D;
   margin: 10px;
 }
@@ -67,4 +172,4 @@ body, html {
 
 .class-buttons a:hover {
   cursor: pointer;
-}
+} */

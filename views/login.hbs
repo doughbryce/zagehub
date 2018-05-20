@@ -4,12 +4,15 @@
     <meta charset="utf-8">
     <title>Login Page</title>
     <link rel="stylesheet" href="/css/login-form.css">
-    <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   </head>
   <body>
-    <p id="sign-up">Sign Up</p>
+    <section id="top-banner">
+      <a id="signupButton" href="/register">Sign Up</a>
+      <a id="forgotButton" href="/">Forgot Password</a>
+    </section>
     <section id="login-container">
-      <section id="login-whitebox">
+      <section id="login-box">
         <section id="login-form-box">
           <div>
             <p id="zagehub-title">ZageHub</p>
@@ -17,16 +20,13 @@
           <div>
             <form id="login-form" action="/login" method="post">
               <p>
-                <input type="text" name="email" placeholder="Username">
+                <input id="username" type="text" placeholder="USERNAME" name="email" value="">
               </p>
               <p>
-                <input type="password" name="password" placeholder="Password">
+                <input id="password" type="password" placeholder="PASSWORD" name="password" value="">
               </p>
-              <input type="submit" value="Login">
+              <input id="loginButton" type="submit" name="" value="Login">
             </form>
-          </div>
-          <div>
-            <p id="forgot-password"><i>Forgot Password?</i></p>
           </div>
         </section>
       </section>
