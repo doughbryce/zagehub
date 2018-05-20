@@ -189,9 +189,47 @@ app.post("/addclass", (req, res) => {
     })
 })
 
+
 app.delete("/delete/:className", (req, res) => {
   console.log("hit delete route");
-  // const className = req.params.className;
+  const className = req.params.className;
+  const id = req.session.userId;
+  // console.log(className);
+  // console.log(req.session.userId);
+
+  // User.findOne({_id: id}, function (err, user) {
+  //   console.log(user);
+  //   console.log(req.params.className);
+  //   let myArray = user.classes
+  //   // console.log(myArray);
+  //   let newArray = myArray.filter(function(obj) {
+  //     return obj.className !== className;
+  //   });
+  //   // user[0].classes = newArray;
+  //   console.log(newArray);
+  //   // console.log(req.session);
+  //   // console.log(user[0].classes);
+  //   // req.body.classes = myArray;
+  //   console.log(newArray);
+  //   user.classes = newArray;
+  //
+  //   user.save(function (err) {
+  //       if(err) {
+  //           console.error('ERROR!');
+  //       }
+  //   });
+  // });
+
+
+  // User.findByIdAndUpdate(id, req.body, {new: true})
+  //   .then(user => {
+  //
+  //     user.save();
+  //   })
+  //   .catch(e => {
+  //     console.log(e);
+  //   })
+  res.redirect("/profile");
   // Class.findByIdAndRemove(id)
   //    .then(dog => {
   //      console.log("Successful delete");

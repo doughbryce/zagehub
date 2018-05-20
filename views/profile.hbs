@@ -26,14 +26,16 @@
               <p><i>Present grade:</i> {{gradeNow}}% &emsp; <i>Minimum grade wanted:</i> {{gradeWant}}%
                 &emsp; <i>Test is worth: {{percentTest}}%</i> &emsp; <i>Grade needed on final:</i> {{final}}%</p>
             </div>
-            <!-- <div class="class-buttons">
+
+            <div class="class-buttons">
               <form action="/delete/{{className}}?_method=DELETE" method="post">
                 <input type="submit" value="Delete">
               </form>
-            </div> -->
+            </div>
+
           </section>
         {{/each}}
-        
+
         <form action="/logout" method="get">
           <input type="submit" value="Logout">
         </form>

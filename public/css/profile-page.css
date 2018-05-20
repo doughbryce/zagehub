@@ -65,7 +65,7 @@ body, html {
 
 .class {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 15% 73% 12%;
   border: solid #2B436D;
   margin: 10px;
   border: 3px solid #6DA3B2;
